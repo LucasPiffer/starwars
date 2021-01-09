@@ -1,24 +1,21 @@
-# README
+# StarWars
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Dependecies
 
-Things you may want to cover:
+This project relies on postgres
 
-* Ruby version
+# Instructions
 
-* System dependencies
+Create a file called application.yml under config/ <br />
+Add DB_PASSWORD to it with the given password <br />
+Install gems with bundle install <br />
+Create databases run rake db:create <br />
+Migrate run rake db:migrate <br />
+Before starting please run rake populate_db <br />
+Star server (rails s) <br />
 
-* Configuration
+# Specs
+bundle exec rspec will run the specs
 
-* Database creation
 
-* Database initialization
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
