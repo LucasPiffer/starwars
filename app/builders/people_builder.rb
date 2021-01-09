@@ -2,6 +2,8 @@ class PeopleBuilder
   def initialize(person_structure)
     @name = person_structure['name']
     @url = person_structure['url']
+    @mass = person_structure['mass']
+    @birth_year = person_structure['birth_year']
     @homeworld_url = person_structure['homeworld']
     @species_urls = person_structure['species']
     @starcrafts_urls = person_structure['starships']
@@ -29,6 +31,8 @@ class PeopleBuilder
     person = Person.find_or_create_by!(
       name: @name,
       url: @url,
+      mass: @mass,
+      birth_year: @birth_year,
       planet: planet
     )
 

@@ -1,4 +1,6 @@
 class Person < ApplicationRecord
+  include ActAsPresentable
+
   validates :name, presence: true
   validates :url, presence: true, uniqueness: true
 
