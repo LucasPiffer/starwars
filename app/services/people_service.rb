@@ -15,13 +15,15 @@ class PeopleService
     response = request.get_list!(next_page: next_url)
 
     response['results'].each do |result|
-      persist_item(result, raise_error: raise_error)
+      persist_item(result, raise_error)
     end
 
     self.get_all_people_from_api(request, next_url: request.next_url, raise_error: raise_error) if request.has_next?
   end
 
-  def self.persist_item(person, raise_error: false)
+  private
+
+  def self.persist_item(person, raise_error)
     person_contract = PersonContract.new.call(person)
 
     if person_contract.success?
