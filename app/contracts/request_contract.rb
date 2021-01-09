@@ -1,4 +1,4 @@
-class PeopleRequestContract < Dry::Validation::Contract
+class RequestContract < Dry::Validation::Contract
   params do
     required(:count).filled(:string)
     required(:previous).filled(:string)

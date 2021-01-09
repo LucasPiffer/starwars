@@ -40,12 +40,14 @@ ActiveRecord::Schema.define(version: 2021_01_08_120728) do
 
   create_table "planets", force: :cascade do |t|
     t.string "name"
+    t.string "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "species", force: :cascade do |t|
     t.string "name"
+    t.string "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -53,6 +55,7 @@ ActiveRecord::Schema.define(version: 2021_01_08_120728) do
   create_table "starcrafts", force: :cascade do |t|
     t.string "name"
     t.string "model"
+    t.string "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

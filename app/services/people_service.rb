@@ -2,15 +2,13 @@ class PeopleService
   def self.save_all
     people = get_all_people_from_api
 
-    people.flatten.each do |person|
-      planet_request = StarWarsApiService::Planets.new
-      spaceship_request = StarWarsApiService::Spaceships.new
-      species_request = StarWarsApiService::Species.new
+    people.each do |person|
+      person_contract = PersonContract.new.call(person)
 
       PeopleBuilder.new(person)
-        .add_planets(planet_request)
-        .add_spaceship(spaceship_request)
-        .add_species(species_request)
+        .set_planet
+        .set_starcrafts
+        .set_species
         .save
     end
   end

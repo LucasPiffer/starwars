@@ -3,26 +3,22 @@ class PeopleBuilder
     @person_structure = person_structure
   end
 
-  def add_planets(planets_structure)
+  def set_planets
 
     self
   end
 
-  def add_spaceship(spaceships_structure)
+  def set_starcrafts
 
     self
   end
 
-  def add_species(species_structure)
+  def set_species
 
     self
   end
 
   def save
 
-  end
-
-  def self.validate_people_contract!(people)
-    PeopleContract.new.call(people)
   end
 end

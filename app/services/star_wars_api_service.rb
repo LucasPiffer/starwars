@@ -37,24 +37,6 @@ module StarWarsApiService
     end
   end
 
-  class Species
-    include Mechanizable
-
-    def get_show(url)
-      response = get url
-
-      response = JSON.parse response.body
-
-      validate_request_contract! request
-
-      response
-    end
-
-    def validate_request_contract!(request)
-      SpeciesRequestContract.new.call(request)
-    end
-  end
-
   class People
     include Mechanizable
 
@@ -69,13 +51,13 @@ module StarWarsApiService
 
       response = JSON.parse response.body
 
-      validate_request_contract! request
+      validate_request_contract! response
 
       response
     end
 
     def validate_request_contract!(request)
-      PeopleRequestContract.new.call(request)
+      RequestContract.new.call(request)
     end
   end
 end

@@ -3,7 +3,7 @@ class CreateStarcrafts < ActiveRecord::Migration[5.2]
     create_table :starcrafts do |t|
       t.string :name
       t.string :model
-
+      t.string :url
       t.timestamps
     end
 
