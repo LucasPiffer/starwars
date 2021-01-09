@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2021_01_09_191853) do
     t.datetime "updated_at", null: false
     t.string "birth_year"
     t.string "mass"
+    t.string "ext_id"
     t.index ["planet_id"], name: "index_people_on_planet_id"
   end
 

@@ -3,6 +3,7 @@ class PeopleBuilder
     @name = person_structure['name']
     @url = person_structure['url']
     @mass = person_structure['mass']
+    @ext_id = person_structure['url'].match(/people\/(\d+)/)[1]
     @birth_year = person_structure['birth_year']
     @homeworld_url = person_structure['homeworld']
     @species_urls = person_structure['species']
@@ -33,6 +34,7 @@ class PeopleBuilder
       url: @url,
       mass: @mass,
       birth_year: @birth_year,
+      ext_id: @ext_id,
       planet: planet
     )
 

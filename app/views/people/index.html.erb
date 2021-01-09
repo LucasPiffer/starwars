@@ -1,7 +1,7 @@
 <div class="list-characters">
   <% @people.each do |person| %>
     <div class="character text-center">
-      <%= image_tag 'starwars.jpg', width: 180 %>
+      <%= image_tag person.ext_id, width: 120 %>
       <div style="width: 100%; text-align: center;">
         <%= person.name %>
       </div>
