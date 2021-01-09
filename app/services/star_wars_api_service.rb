@@ -1,5 +1,59 @@
-module StarWarsService
+module StarWarsApiService
   BASE_URL = "http://swapi.dev/api/".freeze
+
+  class Spaceships
+    include Mechanizable
+
+    def get_show(url)
+      response = get url
+
+      response = JSON.parse response.body
+
+      validate_request_contract! request
+
+      response
+    end
+
+    def validate_request_contract!(request)
+      SpaceshipsRequestContract.new.call(request)
+    end
+  end
+
+  class Planets
+    include Mechanizable
+
+    def get_show(url)
+      response = get url
+
+      response = JSON.parse response.body
+
+      validate_request_contract! request
+
+      response
+    end
+
+    def validate_request_contract!(request)
+      PlanetsRequestContract.new.call(request)
+    end
+  end
+
+  class Species
+    include Mechanizable
+
+    def get_show(url)
+      response = get url
+
+      response = JSON.parse response.body
+
+      validate_request_contract! request
+
+      response
+    end
+
+    def validate_request_contract!(request)
+      SpeciesRequestContract.new.call(request)
+    end
+  end
 
   class People
     include Mechanizable

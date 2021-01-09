@@ -1,12 +1,25 @@
 class PeopleBuilder
-  def self.build(people)
-    people.each do |people_structure|
-      validate_people_contract! people_structure
+  def initialize(person_structure)
+    @person_structure = person_structure
+  end
 
-      People.create(people_structure)
-    rescue => e
-      Rails.logger.info "Failed to..."
-    end
+  def add_planets(planets_structure)
+
+    self
+  end
+
+  def add_spaceship(spaceships_structure)
+
+    self
+  end
+
+  def add_species(species_structure)
+
+    self
+  end
+
+  def save
+
   end
 
   def self.validate_people_contract!(people)
