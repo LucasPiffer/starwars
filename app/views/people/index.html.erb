@@ -1,6 +1,16 @@
+<div class="fade-wrapper">
+  <div class="fade"></div>
+  <div class="sidebar">
+  </div>
+</div>
+
+<header class="text-center">
+  <%= image_tag 'large_thumbnail', width: 200 %>
+</header>
+
 <div class="list-characters">
   <% @people.each do |person| %>
-    <div class="character text-center">
+    <div class="character text-center" id="<%= person.id %>">
       <%= image_tag person.ext_id, width: 120 %>
       <div style="width: 100%; text-align: center;">
         <%= person.name %>
@@ -12,4 +22,3 @@
 <div class="paginate">
   <%= will_paginate @people %>
 </div>
-

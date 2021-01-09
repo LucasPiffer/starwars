@@ -14,6 +14,39 @@
  *= require_self
  */
 
+html, body {
+    margin: 0;
+    background-color: #000;
+    color: white;
+    font-family: 'Poller One', cursive;
+}
+
+.fade-wrapper {
+    position: absolute;
+    z-index:9999;
+    height: 100%;
+    width: 100%;
+    display: none;
+}
+
+.fade {
+    position: absolute;
+    background-color: #000;
+    backdrop-filter: blur(5px);
+    height: 100%;
+    width: 100%;
+    opacity: 0.5;
+}
+
+.sidebar {
+    position: absolute;
+    right: 0;
+    background-color: #000;
+    width: 50%;
+    height: 100%;
+    box-shadow: -3px 0px 10px red;
+}
+
 .text-center {
     text-align: center;
 }
@@ -29,8 +62,20 @@
     width: 200px;
 }
 
+.character:hover {
+    transition: background-color 0.5s ease;
+    color: #fc0;
+}
+
 .paginate {
     width: 100%;
     height: 50px;
+    margin-top: 50px;
+    font-size: 32px;
     text-align: center;
+    color: #fc0 !important;
+}
+
+.paginate a:visited {
+  color: #fc0;
 }
