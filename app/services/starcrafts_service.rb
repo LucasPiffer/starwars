@@ -16,7 +16,7 @@ class StarcraftsService
       persist_item(result, raise_error)
     end
 
-    self.get_all_starcrafts_from_api(request, next_url: request.next_url) if request.has_next?
+    self.get_all_starcrafts_from_api(request, next_url: request.next_url, raise_error: raise_error) if request.has_next?
   end
 
   private
