@@ -1,0 +1,15 @@
+<div class="list-characters">
+  <% @people.each do |person| %>
+    <div class="character text-center">
+      <%= image_tag 'starwars.jpg', width: 180 %>
+      <div style="width: 100%; text-align: center;">
+        <%= person.name %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="paginate">
+  <%= will_paginate @people %>
+</div>
+
