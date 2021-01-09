@@ -1,24 +1,47 @@
 class PeopleBuilder
   def initialize(person_structure)
-    @person_structure = person_structure
-  end
-
-  def set_planets
-
-    self
+    @name = person_structure['name']
+    @url = person_structure['url']
+    @homeworld_url = person_structure['homeworld']
+    @species_urls = person_structure['species']
+    @starcrafts_urls = person_structure['starships']
   end
 
   def set_starcrafts
+    @starcrafts = @starcrafts_urls.map do |url|
+      Starcraft.find_by(url: url)
+    end.compact
 
     self
   end
 
   def set_species
+    @species = @species_urls.map do |url|
+      Species.find_by(url: url)
+    end.compact
 
     self
   end
 
   def save
+    planet = Planet.find_by url: @homeworld_url
 
+    person = Person.find_or_create_by!(
+      name: @name,
+      url: @url,
+      planet: planet
+    )
+
+    if @starcrafts.present?
+      @starcrafts.each do |starcraft|
+        person.starcrafts << starcraft
+      end
+    end
+
+    if @species.present?
+      @species.each do |starcraft|
+        person.species << starcraft
+      end
+    end
   end
 end

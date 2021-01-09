@@ -1,34 +1,34 @@
 class PeopleService
   def self.save_all
-    people = get_all_people_from_api
+    request = PeopleServiceApi.new
 
-    people.each do |person|
-      person_contract = PersonContract.new.call(person)
-
-      PeopleBuilder.new(person)
-        .set_planet
-        .set_starcrafts
-        .set_species
-        .save
+    get_all_people_from_api(request) do |people_item|
+      persist_item(people_item)
     end
   end
 
-  def self.get_all_people_from_api
-    people = []
-    next_url = ''
+  def self.get_all_people_from_api(request, next_url: nil)
+    response = request.get_list!(next_page: next_url)
 
-    request = StarWarsApiService::People.new
-
-    response = request.get_list!
-    people << response['results']
-
-    while response['next'].present? && response['next'] != next_url
-      next_url = response['next']
-      response = request.get_list!(next_page: next_url)
-
-      people << response['results']
+    response['results'].each do |result|
+      persist_item(result)
     end
 
-    people.flatten
+    self.get_all_people_from_api(request, next_url: request.next_url) if request.has_next?
+  end
+
+  def self.persist_item(person)
+    person_contract = PersonContract.new.call(person)
+
+    if person_contract.success?
+      puts "Going to find or save #{person}".green
+
+      PeopleBuilder.new(person)
+        .set_starcrafts
+        .set_species
+        .save
+    else
+      puts "Record #{person} is not contract compliant".red
+    end
   end
 end
