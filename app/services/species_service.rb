@@ -19,8 +19,6 @@ class SpeciesService
     self.get_all_species_from_api(request, next_url: request.next_url, raise_error: raise_error) if request.has_next?
   end
 
-  private
-
   def self.persist_item(species_item, raise_error)
     species_contract = SpeciesContract.new.call(species_item)
 
@@ -36,4 +34,6 @@ class SpeciesService
       end
     end
   end
+
+  private_class_method :persist_item
 end

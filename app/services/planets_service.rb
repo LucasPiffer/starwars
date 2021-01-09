@@ -34,4 +34,6 @@ class PlanetsService
       end
     end
   end
+
+  private_class_method :persist_item
 end
