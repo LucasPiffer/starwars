@@ -18,7 +18,7 @@ class StarcraftsService
 
     self.get_all_starcrafts_from_api(request, next_url: request.next_url, raise_error: raise_error) if request.has_next?
   end
-  
+
   def self.persist_item(starcrafts_item, raise_error)
     starcrafts_contract = StarcraftContract.new.call(starcrafts_item)
 

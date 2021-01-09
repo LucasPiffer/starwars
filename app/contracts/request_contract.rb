@@ -1,9 +1,8 @@
 class RequestContract < Dry::Validation::Contract
   params do
-    required(:count).value(:string)
-    required(:previous).value(:string)
+    required(:count).value(:integer)
     required(:results).value(:array)
-    required(:next).value(:string)
+    required(:next).maybe(:string)
   end
 end
 
