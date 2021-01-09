@@ -1,6 +1,7 @@
 module StarwarsServiceApi
   BASE_URL = "http://swapi.dev/api/".freeze
   include Mechanizable
+  include ContractErrors
 
   def has_next?
     next_url.present?
@@ -27,6 +28,8 @@ module StarwarsServiceApi
   end
 
   def validate_request_contract!(request)
-    RequestContract.new.call(request)
+    contract = RequestContract.new.call(request)
+
+    raise RequestBrokenContractError.new unless contract.success?
   end
 end
