@@ -2,20 +2,33 @@ require 'rails_helper'
 
 RSpec.describe PeopleService, type: :service do
   describe '.save_all' do
+    let(:planet) do
+      create(:planet).url
+    end
+
+    let(:starcrafts) do
+      starcract_one = create(:starcraft, name: "Xyz", model: "ZZZ")
+      starcract_two = create(:starcraft, name: "ZZy", model: "Xyz")
+
+      [starcract_one.url, starcract_two.url]
+    end
+
+    let(:species) do
+      species_one = create(:species)
+      species_two = create(:species)
+
+      [species_one.url, species_two.url]
+    end
+
     context 'when API is compliant with contract and has pagination' do
       let(:first_ten) do
         1.upto(10).map do |i|
           {
             'name' => Faker::Movies::StarWars.character,
             'url' => "https://swapi.dev/api/people/#{i}",
-            'homeworld' => "https://swapi.dev/api/planets/#{i}",
-            'species' => [
-              "https://swapi.dev/api/species/#{i}",
-              "https://swapi.dev/api/species/#{i + 1}",
-            ],
-            'starships' => [
-              "https://swapi.dev/api/spaceships/#{i}",
-            ]
+            'homeworld' => planet,
+            'species' => species,
+            'starships' => starcrafts
           }
         end
       end
@@ -25,14 +38,9 @@ RSpec.describe PeopleService, type: :service do
           {
             'name' => Faker::Movies::StarWars.character,
             'url' => "https://swapi.dev/api/people/#{i}",
-            'homeworld' => "https://swapi.dev/api/planets/#{i}",
-            'species' => [
-              "https://swapi.dev/api/species/#{i}",
-              "https://swapi.dev/api/species/#{i + 1}",
-            ],
-            'starships' => [
-              "https://swapi.dev/api/spaceships/#{i}",
-            ]
+            'homeworld' => planet,
+            'species' => species,
+            'starships' => starcrafts
           }
         end
       end
@@ -61,6 +69,9 @@ RSpec.describe PeopleService, type: :service do
 
         people = Person.first
 
+        expect(people.planet.url).to eq planet
+        expect(people.starcrafts.size).to eq 2
+        expect(people.species.size).to eq 2
       end
     end
 

@@ -32,16 +32,19 @@ class PeopleBuilder
       planet: planet
     )
 
-    if @starcrafts.present?
-      @starcrafts.each do |starcraft|
-        person.starcrafts << starcraft
-      end
-    end
+    save_starcrafts(person) if @starcrafts.present?
+    save_species(person) if @species.present?
+  end
 
-    if @species.present?
-      @species.each do |starcraft|
-        person.species << starcraft
-      end
+  def save_starcrafts(person)
+    @starcrafts.each do |starcraft|
+      person.starcrafts << starcraft
+    end
+  end
+
+  def save_species(person)
+    @species.each do |starcraft|
+      person.species << starcraft
     end
   end
 end
