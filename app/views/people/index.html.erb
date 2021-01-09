@@ -19,6 +19,23 @@
   <% end %>
 </div>
 
+<% if @people.blank? %>
+  <section class="star-wars">
+
+    <div class="crawl">
+
+      <div class="title">
+        <p>Episode IV</p>
+        <h1>Instructions before start</h1>
+      </div>
+
+      <p>Before starting please run rake populate_db and enjoy the experience</p>
+      <p>May the force be with me</p>
+    </div>
+
+  </section>
+<% end %>
+
 <div class="paginate">
   <%= will_paginate @people %>
 </div>
