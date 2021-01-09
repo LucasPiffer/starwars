@@ -19,24 +19,6 @@ module StarWarsApiService
     end
   end
 
-  class Planets
-    include Mechanizable
-
-    def get_show(url)
-      response = get url
-
-      response = JSON.parse response.body
-
-      validate_request_contract! request
-
-      response
-    end
-
-    def validate_request_contract!(request)
-      PlanetsRequestContract.new.call(request)
-    end
-  end
-
   class People
     include Mechanizable
 
